@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SensorDataService } from '../../services/sensor-data.service';
 import { Chart, registerables } from 'chart.js';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sensor-data-chart',
@@ -9,6 +10,7 @@ import { Chart, registerables } from 'chart.js';
     <div class="chart-container">
       <h2>Sensor Data Chart</h2>
       <canvas id="sensorDataChart"></canvas>
+      <button (click)="goToDataPage()">Visualize Data</button>
     </div>
   `,
   styles: [
@@ -40,12 +42,26 @@ import { Chart, registerables } from 'chart.js';
         box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
         padding: 15px;
       }
+      button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
     `,
   ],
   providers: [SensorDataService],
 })
 export class SensorDataChartComponent implements OnInit {
-  constructor(private sensorDataService: SensorDataService) {}
+  constructor(private sensorDataService: SensorDataService, private router: Router) {}
 
   ngOnInit(): void {
     Chart.register(...registerables);
@@ -96,5 +112,9 @@ export class SensorDataChartComponent implements OnInit {
         },
       },
     });
+  }
+
+  goToDataPage(): void {
+    this.router.navigate(['/sensor-data-table']); // Replace '/data-page' with the actual path to your data page
   }
 }
