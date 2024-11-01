@@ -36,21 +36,27 @@ export class SensorDataChartComponent implements OnInit {
   }
 
   createChart(sensorData: any[]): void {
-    const labels = sensorData.map((data) => data.timestamp); // Assuming you have a timestamp field
-    const values = sensorData.map((data) => data.value); // Replace 'value' with the actual field you want to chart
+    const labels = ['pH', 'Rain', 'Water Level', 'Oxygen', 'Temperature']; // Define specific sensor names for X-axis labels
+    const values = [
+      sensorData.map((data) => data.ph).reduce((a, b) => a + b, 0) / sensorData.length,
+      sensorData.map((data) => data.rain).reduce((a, b) => a + b, 0) / sensorData.length,
+      sensorData.map((data) => data.waterLevel).reduce((a, b) => a + b, 0) / sensorData.length,
+      sensorData.map((data) => data.oxygen).reduce((a, b) => a + b, 0) / sensorData.length,
+      sensorData.map((data) => data.temperature).reduce((a, b) => a + b, 0) / sensorData.length,
+    ]; // Aggregate each sensor's average values for demonstration
 
     const ctx = document.getElementById('sensorDataChart') as HTMLCanvasElement;
     new Chart(ctx, {
-      type: 'line', // You can change this to bar, pie, etc.
+      type: 'bar', // Set chart type to 'bar'
       data: {
         labels: labels,
         datasets: [
           {
-            label: 'Sensor Data',
+            label: 'Average Sensor Data',
             data: values,
-            fill: false,
-            borderColor: 'blue',
-            tension: 0.1,
+            backgroundColor: 'rgba(54, 162, 235, 0.6)', // Set bar color
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
           },
         ],
       },
@@ -58,13 +64,18 @@ export class SensorDataChartComponent implements OnInit {
         responsive: true,
         scales: {
           x: {
-            type: 'category', // Ensure 'category' type is correctly specified
+            type: 'category',
             title: {
               display: true,
-              text: 'Time',
+              text: 'Sensor Name',
             },
           },
           y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 5, // Set each unit step to 5
+              callback: (value) => Number(value).toFixed(0), // Display integer values only
+            },
             title: {
               display: true,
               text: 'Sensor Value',
@@ -74,4 +85,5 @@ export class SensorDataChartComponent implements OnInit {
       },
     });
   }
+
 }
