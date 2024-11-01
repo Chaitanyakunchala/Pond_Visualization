@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background-color: #f5f7fa;
+        background: linear-gradient(to bottom right, #ff7e5f, #feb47b); /* Colorful gradient background */
         border-radius: 8px;
         box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         padding: 20px;
@@ -30,7 +30,7 @@ import { Router } from '@angular/router';
       h2 {
         font-family: Arial, sans-serif;
         font-size: 24px;
-        color: #333;
+        color: #fff; /* Changed to white for better contrast */
         margin-bottom: 10px;
         text-align: center;
       }
@@ -85,6 +85,14 @@ export class SensorDataChartComponent implements OnInit {
       sensorData.map((data) => data.temperature).reduce((a, b) => a + b, 0) / sensorData.length,
     ];
 
+    const colors = [
+      'rgba(255, 99, 132, 0.6)', // Red
+      'rgba(54, 162, 235, 0.6)', // Blue
+      'rgba(255, 206, 86, 0.6)', // Yellow
+      'rgba(75, 192, 192, 0.6)', // Green
+      'rgba(153, 102, 255, 0.6)', // Purple
+    ];
+
     const ctx = document.getElementById('sensorDataChart') as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'bar',
@@ -94,8 +102,8 @@ export class SensorDataChartComponent implements OnInit {
           {
             label: 'Average Sensor Data',
             data: values,
-            backgroundColor: 'rgba(54, 162, 235, 0.6)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: colors, // Assign the colors array
+            borderColor: colors.map(color => color.replace('0.6', '1')), // Set the border color to be opaque
             borderWidth: 1,
           },
         ],
@@ -115,6 +123,6 @@ export class SensorDataChartComponent implements OnInit {
   }
 
   goToDataPage(): void {
-    this.router.navigate(['/sensor-data-table']); // Replace '/data-page' with the actual path to your data page
+    this.router.navigate(['/sensor-data-table']); // Replace '/sensor-data-table' with the actual path to your data page
   }
 }
