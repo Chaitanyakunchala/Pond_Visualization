@@ -1,21 +1,62 @@
+/* Styles for the table */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  tr:hover {
-    background-color: #f1f1f1;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 90%;
+}
+
+thead {
+  background-color: #4f6d7a;
+  color: #fff;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+tbody tr:hover {
+  background-color: #e1e5ea;
+  transition: background-color 0.3s ease;
+}
+
+/* Styles for the button */
+button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: Arial, sans-serif;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
