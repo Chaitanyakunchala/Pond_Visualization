@@ -1,25 +1,24 @@
 <table>
-    <thead>
-      <tr>
-        <!-- <th>ID</th> -->
-        <th>Pond ID</th>
-        <th>pH</th>
-        <th>Rain</th>
-        <th>Water Level</th>
-        <th>Oxygen</th>
-        <th>Temperature</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let sensor of sensorDataList">
-        <!-- <td>{{ sensor.id }}</td> -->
-        <td>{{ sensor.pondId }}</td>
-        <td>{{ sensor.ph }}</td>
-        <td>{{ sensor.rain }}</td>
-        <td>{{ sensor.waterLevel }}</td>
-        <td>{{ sensor.oxygen }}</td>
-        <td>{{ sensor.temperature }}</td>
-      </tr>
-    </tbody>
-  </table>
-  
+  <thead>
+    <tr>
+      <th>Pond ID</th>
+      <th>pH</th>
+      <th>Rain</th>
+      <th>Water Level</th>
+      <th>Oxygen</th>
+      <th>Temperature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sensor of sensorDataList">
+      <td>{{ sensor.pondId }}</td>
+      <td>{{ sensor.ph }}</td>
+      <td>{{ sensor.rain }}</td>
+      <td>{{ sensor.waterLevel }}</td>
+      <td>{{ sensor.oxygen }}</td>
+      <td>{{ sensor.temperature }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<button (click)="goToChartPage()">Visualize Data</button>

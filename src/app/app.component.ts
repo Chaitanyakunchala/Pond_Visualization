@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { SensorDataTableComponent } from './components/sensor-data-table/sensor-data-table.component'; // Adjust the path as necessary
-import { SensorDataChartComponent } from './components/sensor-data-chart/sensor-data-chart.component';
+import { RouterModule } from '@angular/router';
+import { SensorDataTableComponent } from './components/sensor-data-table/sensor-data-table.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   template: `
     <h1>Sensor Data Visualization</h1>
-    <app-sensor-data-chart></app-sensor-data-chart>
-    <app-sensor-data-table></app-sensor-data-table>
+    <router-outlet></router-outlet>
   `,
-  imports: [SensorDataTableComponent, SensorDataChartComponent],
+  imports: [RouterModule, SensorDataTableComponent],
 })
 export class AppComponent {}

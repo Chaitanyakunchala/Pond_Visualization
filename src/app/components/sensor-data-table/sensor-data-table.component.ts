@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { SensorDataService } from '../../services/sensor-data.service';
 import { CommonModule } from '@angular/common';
 
@@ -7,13 +8,16 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   templateUrl: './sensor-data-table.component.html',
   styleUrls: ['./sensor-data-table.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],  // Import RouterModule here
   providers: [SensorDataService],
 })
 export class SensorDataTableComponent implements OnInit {
   sensorDataList: any[] = [];
 
-  constructor(private sensorDataService: SensorDataService) {}
+  constructor(
+    private sensorDataService: SensorDataService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.sensorDataService.getAllSensorData().subscribe(
@@ -24,5 +28,9 @@ export class SensorDataTableComponent implements OnInit {
         console.error('Error fetching sensor data:', error);
       }
     );
+  }
+
+  goToChartPage(): void {
+    this.router.navigate(['/visualize']);
   }
 }

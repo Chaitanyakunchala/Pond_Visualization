@@ -1,5 +1,32 @@
+/* Style for the container */
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f7fa;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 80%;
+}
+
+/* Style for the title */
+h2 {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Style for the chart */
 canvas {
-    max-width: 600px;
-    margin: auto;
-  }
-  
+  max-width: 1000px; /* Increased chart width */
+  height: 500px; /* Increased chart height */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+}
